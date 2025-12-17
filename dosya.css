@@ -1,0 +1,58 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0; /* Tarayıcının kendi verdiği dış boşluğu ortadan kaldır. */
+    min-height: 100vh; /* Ekranın %100'ünü kapla */
+    display: flex; /* Hizalama Modülü */
+    justify-content: center; /* İçindekileri yatay eksende hizala */
+    align-items: center; /* İçindekileri dikey eksende hizala */
+    background-color: #FFDBB6; /* Arkaplan rengi */
+}
+
+.galeri { 
+    display: grid; /* Izgara modülü */
+    grid-template-columns: repeat(3, 1fr); /* Sütunlarla üç eşit parçaya(kutuya) böl */ 
+    gap: 100px; /* Kutular arası mesafe 100p x olsun. */
+    max-width: 1100px;  /* Genişlik en fazla 1100 px olsun */
+    width: 100%; /* Ekranın tamamını kapla (ama 1100 px'i aşamaz). */
+}
+
+.galeri a {
+    position: relative; /* içindekilerin konumlanmasında referans olması için position relative */
+    display: block; /* <a> etiketini blok elemente dönüştür. */
+    overflow: hidden; /* Resim <a> bloğundan taşarsa gizle */
+    border-radius: 8px;  /* Köşeleri 8px yuvarla */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);  /* Gölge */
+    transition: box-shadow 0.3s; /* Gölgeyi 0.3 saniyelik bir sürede büyüt */
+}
+
+.galeri a:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* İmleç resmin (class="galeri a") üzerine geldiğinde gölgeyi değiştir (büyüt). */
+}
+
+.galeri a:hover .resim { /* Kullanıcı imleci <a> bloğunun üstüne getirdiğinde resmi ( resim sınıfını) hedef al. */
+    transform: scale(1.05); /* %5 büyüt */
+}
+
+.resim {
+    width: 100%; /* İçinde bulunduğun kutuyu/bloğu kapla. */
+    aspect-ratio: 1 / 1; /* En-boy oranı 1/1 (kare) olsun. */
+    object-fit: cover;  /* İçinde bulunduğun kutuyu en-boy oranını bozmadan kapla, fazlalığı gösterme */
+    display: block; /* Blok elemente dönüş. */
+    transition: transform 0.3s; /* Büyüme işlevini 0.3 saniyelik bir sürede yap. */
+    /*
+     Büyüme işlevinin süresini belirleyen bu işlevin hemen büyüme işlevinin altında olmayıp da bu sınıf içinde olmasının sebebi, imleç farklı resme geçtiğinde gölgenin küçülmesinin de aniden değil 0.3 saniyelik bir sürede olmasını istediğim için.
+    */
+}
+
+.etiket {
+    position: absolute; 
+    bottom: 10px; 
+    left: 10px; 
+    font-family: sans-serif;
+    color: #FBEFEF; 
+    font-weight: lighter;
+    font-size: 20px;
+    z-index: 2;
+    text-shadow: rgba(0, 0, 0, 0.8); 
+}
